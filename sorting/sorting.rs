@@ -1,15 +1,33 @@
-pub fn is_sorted<T: Ord>(arr: &[T]) -> bool {
-    for i in 0..arr.len().saturating_sub(1) {
-        if arr[i] > arr[i + 1] {
-            return false;
-        }
-    }
-    true
+#[cfg(test)]
+pub fn is_sorted<T>(arr: &[T]) -> bool
+where
+    T: cmp::PartialOrd,
+{
+    arr.windows(2).all(|w| w[0] <= w[1])
 }
-
 use std::collections::HashSet;
 
-pub fn have_same_elements<T: Eq + std::hash::Hash>(a: &[T], b: &[T]) -> bool {
-    let set_a: HashSet<_> = a.iter().collect();
-    b.iter().any(|item| set_a.contains(item))
+#[cfg(test)]
+use std::cmp;
+
+#[cfg(test)]
+pub fn have_same_elements<T>(a: &[T], b: &[T]) -> bool
+where
+// T: cmp::PartialOrd,
+// If HashSet is used
+    T: cmp::PartialOrd + cmp::Eq + std::hash::Hash,
+{
+
+
+    if a.len() == b.len() {
+        // This is O(n^2) but performs better on smaller data sizes
+        //b.iter().all(|item| a.contains(item))
+
+        // This is O(n), performs well on larger data sizes
+        let set_a: HashSet<&T> = a.iter().collect();
+        let set_b: HashSet<&T> = b.iter().collect();
+        set_a == set_b
+    } else {
+        false
+    }
 }

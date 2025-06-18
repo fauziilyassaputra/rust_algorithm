@@ -92,3 +92,17 @@ mod tests {
         }
     }
 }
+
+/*
+penjelasan :
+    Bogosort adalah algoritma paling tidak efisien dan sering dianggap sebagai lelucon di didunia pemograman. 
+cara kerjanya :
+1.periksa apakah daftar sudah terurut
+2.jika belum acak ulang elemen dalam daftar
+3.ulangi terus menerus sampai data benar-benar terurut
+
+dalam kasus terburuk. algoritma ini bisa berjalan selamanya tanpa  pernah menghasilkan daftar yang terurut. namun, 
+meskipun tidak perkatis, algoritma ini sering dijadikan contoh agar memahami betapa pentingnya efisiensi dalam
+algoritma pengurutan.
+
+*/

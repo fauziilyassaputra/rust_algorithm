@@ -1,11 +1,11 @@
-mod math;
+mod lib;
 
 fn main() {
     println!("Hello, world!");
 }
 
 // di import dari math.rs 
-use crate::math::PCG32;
+use crate::lib::PCG32;
 
 // mengambil waktu berbasis sekarang
 use std::time::{SystemTime, UNIX_EPOCH};
